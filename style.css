@@ -39,9 +39,9 @@ input{
 }
 
 #submit, .btn{
-    padding: 1rem 3rem;
+    padding: 1rem 2rem;
     outline: none;
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 400;
     display: block;
     margin: auto;
@@ -50,6 +50,7 @@ input{
     color: #fff;
     background-color: #74b9ff;
     margin-top: 3rem;
+    cursor: pointer;
 }
 
 #submit:hover{
@@ -58,10 +59,27 @@ input{
 
 #showScore{
     background-color: #dfe6e9;
-    margin-top: 2rem;
-    padding: 3rem 4rem;
+    margin-top: 1rem;
+    padding: 2rem 3rem;
     box-shadow: 0 1rem 1rem -0.7rem rgba(0, 0, 0, 0.4);
 }
+
+#showScore h3{
+    font-size: 2rem;
+    text-align: center;
+}
+
+#showScore .btn{
+    margin-top: 1.5rem;
+    background-color: #55efc4;
+    color: #2d3436;
+}
+
+#showScore .btn:hover{
+    background-color: #55efc4;
+    color:#2d3436
+}
+
 .showArea{
     display: none;
 }

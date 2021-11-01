@@ -1,6 +1,6 @@
 const quizDB = [
     {
-        Question: "Q1 : What is the full form of HTML?"
+        question: "Q1 : What is the full form of HTML?",
         a: "Hello To My Language",
         b: "Hey Text Markup Language",
         c: "HyperText Markup Language",
@@ -8,7 +8,7 @@ const quizDB = [
         ans: "ans4"
     },
     {
-        Question: "Q2 : What is the full form of CSS?"
+        question: "Q2 : What is the full form of CSS?",
         a: "Cascading Style Sheets",
         b: "Cascading Style Sheep",
         c: "Cascading Sheets Style",
@@ -16,7 +16,7 @@ const quizDB = [
         ans: "ans1"
     },
     {
-        Question: "Q3 : What is the full form of HTTP?"
+        question: "Q3 : What is the full form of HTTP?",
         a: "HyperText Transmision Protocal",
         b: "HyperText Test Protocol",
         c: "HyperText Transfer Protocol",
@@ -24,7 +24,7 @@ const quizDB = [
         ans: "ans3"
     },
     {
-        Question: "Q4 : What is the full form of JS?"
+        question: "Q4 : What is the full form of JS?",
         a: "JavasScript",
         b: "JavaScript",
         c: "JustScript",
@@ -40,10 +40,15 @@ const option3 = document.querySelector('#option3');
 const option4 = document.querySelector('#option4');
 
 const submit = document.querySelector('#submit');
+const answers = document.querySelectorAll('.answer');
+const showScore = document.querySelector('#showScore');
+
 
 let questionCount = 0;
+let score = 0;
 
 const loadQuestion = () =>{
+    //console.log(quizDB[0]);
     const questionList = quizDB[questionCount];
 
     question.innerText = questionList.question;
@@ -54,3 +59,42 @@ const loadQuestion = () =>{
 }
 
 loadQuestion();
+
+const getCheckAnswer = () =>{
+    let answer;
+
+    answers.forEach((curAnsElem) =>{
+        if(curAnsElem.checked){
+            answer = curAnsElem.id;
+        }
+    });
+    return answer;
+};
+
+const deselectAll = () => {
+    answers.forEach((curAnsElem) => curAnsElem.checked = false);
+}
+
+submit.addEventListener('click', () => {
+    const checkedAnswer = getCheckAnswer();
+    console.log(checkedAnswer);
+
+    if(checkedAnswer === quizDB[questionCount].ans){
+        score++;
+    };
+    questionCount++;
+    deselectAll();
+
+    if(questionCount < quizDB.length){
+        loadQuestion();
+    }
+    else{
+        showScore.innerHTML = `
+        <h3>Congrt You Scored ${score}/${quizDB.length} </h3>
+        <button class="btn" onclick="location.reload()">Play it again</button>
+        `;
+
+        showScore.classList.remove('showArea');
+    }
+
+});
